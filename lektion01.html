@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body {
+                background-color: #1d1d1d;
+                color: #ffffff;
+                font-family: Arial, sans-serif;
+                width: 600;
+                height: 600;
+                line-height: 140%;
+            }
+            .glas{
+                background: #32342e;
+                border: 1px solid #4b4b4b;
+                border-radius: 5px;
+                -moz-border-radius: 5px;
+                -webkit-border-radius: 5px;
+                box-shadow: 1px 2px 4px rgb(255, 255, 255);
+                }
+            code {
+                color:rgb(0, 255, 17);
+            }
+            *::-webkit-scrollbar {
+                width: 18px;
+            }
+
+            *::-webkit-scrollbar-track {
+                background: rgb(33, 33, 33);
+            }
+
+            *::-webkit-scrollbar-thumb {
+                background-color: rgb(255, 255, 255);
+                border-radius: 20px;
+                border: 3px solid rgb(0, 0, 0);
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Variablen in Python</h1>
+        <h3>Zahlen</h3>
+        <p>Python hat zwei grundlegende Arten von Zahlen:</p>
+        <ul>
+          <li>Ganze Zahlen (int): z.B. 42</li>
+        </ul>
+        <pre>
+            <code>zahl = 42</code>
+        </pre>
+        <ul>
+          <li>Gleitkommazahlen (float): z.B. 3.14</li>
+        </ul>
+        <pre>
+            <code>zahl = 42.88452</code>
+        </pre>
+        <h3>Booleans</h3>
+        <p>Booleans repräsentieren Wahrheitswerte und haben nur zwei mögliche Werte:</p>
+            <pre>
+                <code>
+            bool = True</code>
+            </pre>
+        <ul>
+          <li>True</li>
+          <li>False</li>
+        </ul>
+        <h3>Strings</h3>
+        <p>Strings repräsentieren Text und werden in Python in Anführungszeichen gesetzt:</p>
+        <pre>    <code>
+            str = "hello world"</code>
+        </pre>        
+        <ul>
+          <li>Einfache Anführungszeichen: 'Hallo Welt'</li>
+          <li>Doppelte Anführungszeichen: "Hallo Welt"</li>
+        </ul>
+        <h3>Listen</h3>
+        <p>Listen sind eine geordnete Sammlung von Elementen. Sie können Elemente hinzufügen, entfernen und ändern:</p>
+        <pre>
+          <code>
+            my_list = [1, 2, 3]
+            my_list.append(4)  # Fügt 4 am Ende der Liste hinzu
+            my_list[1] = 5    # Ändert das zweite Element auf 5
+          </code>
+        </pre>
+        <h3>Dictionaries</h3>
+        <p>Dictionaries sind eine Sammlung von Schlüssel-Wert-Paaren. Sie ermöglichen es, schnell auf Elemente zuzugreifen:</p>
+        <pre>
+          <code>
+            my_dict = {'name': 'Max', 'alter': 27}
+            my_dict['name']   # Gibt 'Max' zurück
+            my_dict['alter']  # Gibt 27 zurück
+          </code>
+        </pre>
+
+
+          
+          <div id="aufgabe" class="glas">
+            <h2>Aufgabe</h2>
+            <p>Schreibe ein Python Programm, dass den input fürr Radius und Höhe eines Zylinders abfragt und daraus das Volumen berechnet.
+                Einheiten sollten angegeben werden</p>
+          </div>
+          
+          <div id="loesung" class="glas">
+            <h2>Lösung</h2>
+            <p>Hier ist die Lösung:</p>
+            <div>
+                <pre>
+                <code>
+    PI = 3.14159
+
+    radius = float(input("Bitte gib den Radius des Zylinders in Metern ein: "))
+    hoehe = float(input("Bitte gib die Höhe des Zylinders in Metern ein: "))
+
+    grundflaeche = PI * radius ** 2
+    volumen = grundflaeche * hoehe
+
+    print("Das Volumen des Zylinders beträgt", round(volumen, 2), "Kubikmeter.")
+            </code>
+            </pre>
+            <p>Das Ergebnis wird mit round() auf zwei Nachkommastellen gerundet und mit einer Einheit ausgegeben.</p>
+            </div>
+          </div>
+    </body>
+</html>
