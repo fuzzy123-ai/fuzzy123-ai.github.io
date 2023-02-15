@@ -1,58 +1,280 @@
-<!DOCTYPE html>
+<!-- HTML !-->
 <html>
+
 <head>
-	<title>Meine Website</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<style>
-		.grid-container {
-			display: grid;
-			grid-template-columns: repeat(3, 1fr);
-			grid-gap: 10px;
-			font-size: 24px;
-			font-weight: bold;
+    <style>
+
+/* CSS */
+.button-78 {
+  align-items: center;
+  appearance: none;
+  background-clip: padding-box;
+  background-color: initial;
+  background-image: none;
+  border-style: none;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  flex-direction: row;
+  flex-shrink: 0;
+  font-family: Eina01,sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  justify-content: center;
+  line-height: 24px;
+  margin: 0;
+  min-height: 64px;
+  outline: none;
+  overflow: visible;
+  padding: 19px 26px;
+  pointer-events: auto;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  width: 250px;
+  word-break: keep-all;
+  z-index: 0;
+}
+
+@media (min-width: 768px) {
+  .button-78 {
+    padding: 19px 32px;
+  }
+}
+
+.button-78:before,
+.button-78:after {
+  border-radius: 80px;
+}
+.button-78:before {
+  background-image: linear-gradient(92.83deg, #ff7426 0, #f93a13 100%);
+  content: "";
+  display: block;
+  height: 100%;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: -2;
+}
+.button-78:after {
+  background-color: initial;
+  background-image: linear-gradient(#541a0f 0, #0c0d0d 100%);
+  bottom: 4px;
+  content: "";
+  display: block;
+  left: 4px;
+  overflow: hidden;
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  transition: all 100ms ease-out;
+  z-index: -1;
+}
+.button-78:hover:not(:disabled):before {
+  background: linear-gradient(92.83deg, rgb(255, 116, 38) 0%, rgb(249, 58, 19) 100%);
+}
+.button-78:hover:not(:disabled):after {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  transition-timing-function: ease-in;
+  opacity: 0;
+}
+.button-78:active:not(:disabled) {
+  color: #ccc;
+}
+.button-78:active:not(:disabled):before {
+  background-image: linear-gradient(0deg, rgba(0, 0, 0, .2), rgba(0, 0, 0, .2)), linear-gradient(92.83deg, #ff7426 0, #f93a13 100%);
+}
+.button-78:active:not(:disabled):after {
+  background-image: linear-gradient(#541a0f 0, #0c0d0d 100%);
+  bottom: 4px;
+  left: 4px;
+  right: 4px;
+  top: 4px;
+}
+.button-78:disabled {
+  cursor: default;
+  opacity: .24;
+}
+body {
+    background-color: #4a4a4a;
+}
+.grid {
+    display: grid;
+	  grid-template-columns: repeat(3, 1fr);
+	  grid-gap: 25px;    
+    background-color: #c1c1c1;
+    align-items: center;
+    position: relative;
+    top: 36%;
+    left: 32%;
+    width: fit-content;
+    height: fit-content;
+    padding: 25px;
+    border: #0c0d0d;
+    border-radius: 15%;
+    border-bottom: #4a4a4a;
+}
+.grid-element{
+
+    width: 250px;
+}
+
+.overlay {
+			display: none;
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0, 0, 0, 0.5);
+		}
+
+.overlay-content {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			background-color: #9a9a9a;
+			padding: 5px;
+			width: 100vh;
+			height: 95vh;
+			overflow: auto;
 			text-align: center;
+            scrollbar-width: thin;          /* "auto" or "thin" */
+            scrollbar-color: blue orange;   /* scroll thumb and track */ 
 		}
-		
-		.grid-item {
-			background-color: #ddd;
-			transition: background-color 0.5s;
+.close-btn {
+            color: #fff;
+			position: absolute;
+			top: 0;
+			right: 3%;
+			font-size: 50px;
+			font-weight: bold;
+			cursor: pointer;
+			padding: 5px;
 		}
-		
-		.grid-item:hover {
-			background-color: #f9c74f;
-		}
-	</style>
+.close-btn::before {
+
+}
+.close-btn:hover {
+    color:#f93a13;
+    transform: rotate(45deg);
+
+}
+.overlay_iframe {
+			width: 1200px;
+			height: 90%;
+		}      
+.overlay-header {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 20px;
+            color: aliceblue;
+}  
+.grid-header {
+  position: relative;
+      top: 25%;
+      left: 40%;
+      background-color: #c1c1c1;
+      width: 450px;
+      height: 50px;
+      text-align: center;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      font-style: normal;
+      font-size: 16px;
+      border: #0c0d0d;
+    border-radius: 15%;
+    border-bottom: #4a4a4a;
+}
+.grid-footer {
+      position: relative;
+      top: 60%;
+      left: 40%;
+      background-color: #c1c1c1;
+      width: 450px;
+      height: 70px;
+      text-align: center;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      font-style: normal;
+      font-size: 16px;
+      border: #0c0d0d;
+      border-radius: 15%;
+      border-bottom: #4a4a4a;
+}
+    </style>
 </head>
+
 <body>
-	<header>
-		<nav>
-			<ul>
-				<li><a href="#">Startseite</a></li>
-				<li><a href="grid.htm">Inhalte</a></li>
-				<li><a href="#">Dienstleistungen</a></li>
-				<li><a href="#">Kontakt</a></li>
-			</ul>
-		</nav>
-	</header>
-	
-	<main>
-		<h1>Meine Seite</h1>
-		<p>Einige Informationen über meine Seite.</p>
-		<div class="grid-container">
-			<div class="grid-item">1</div>
-			<div class="grid-item">2</div>
-			<div class="grid-item">3</div>
-			<div class="grid-item">4</div>
-			<div class="grid-item">5</div>
-			<div class="grid-item">6</div>
-			<div class="grid-item">7</div>
-			<div class="grid-item">8</div>
-			<div class="grid-item">9</div>
-		</div>
-	</main>
-	
-	<footer>
-		<p>&copy; 2023 Meine Firma</p>
-	</footer>
+<div class="grid-header">
+    <p>
+      <h1>
+        Informatik: Python lernen
+      </h1>
+    </p>
+</div>
+<div class="grid">
+    <div class="grid-element" id="g1">
+        <button class="button-78" role="button" onclick="openOverlay('overlay01')">1:Variablen</button>
+    </div>
+    <div class="grid-element" id="g2">
+        <button class="button-78" role="button" onclick="openOverlay('overlay02')">2:Bedingungen</button>
+    </div>
+    <div class="grid-element" id="g3">
+        <button class="button-78" role="button" onclick="openOverlay('overlay03')">3:Schleifen</button>
+    </div>
+    <div class="grid-element" id="g4">
+        <button class="button-78" role="button" onclick="openOverlay('overlay04')">4:Funktionen</button>
+    </div>
+    <div class="grid-element" id="g5">
+        <button class="button-78" role="button" onclick="openOverlay('overlay05')">5:Dateien einbinden</button>
+    </div>
+    <div class="grid-element" id="g6">
+        <button class="button-78" role="button" onclick="openOverlay('overlay06')">6:Bibliotheken</button>
+    </div>
+    <div class="grid-element" id="g7">
+        <button class="button-78" role="button" onclick="openOverlay('overlay07')">Button 7</button>
+    </div>
+    <div class="grid-element" id="g8">
+        <button class="button-78" role="button" onclick="openOverlay('overlay08')">Button 8</button>
+    </div>
+    <div class="grid-element" id="g9">
+        <button class="button-78" role="button" onclick="openOverlay('overlay09')">Button 9</button>
+    </div>
+</div>
+<div class="overlay" id="overlay01">
+    <div class="overlay-content">
+        <p class="overlay-header">Python Programmieren</p>
+        <span class="close-btn" onclick="closeOverlay('overlay01')">&times;</span> 
+        <iframe class="overlay_iframe" src="lektion01.html"></iframe>       
+    </div>
+</div>
+    <div class="grid-footer">
+        <p>Niklas Katzarow - 2023 </br>
+        Alle Inhalte wurden mithilfe von openAI: chatGPT erstellt</p>
+    </div>
 </body>
+
+<script>
+function openOverlay(index) {
+			document.getElementById(index).style.display = "block";
+		}
+
+		function closeOverlay(index) {
+			document.getElementById(index).style.display = "none";
+		}
+</script>
+
+<footer>
+
+</footer>
 </html>
