@@ -1,0 +1,47 @@
+body {
+    background-color: #1d1d1d;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    width: 600;
+    height: 600;
+    line-height: 140%;
+}
+.glas{
+    background: #32342e;
+    border: 1px solid #4b4b4b;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    box-shadow: 1px 2px 4px rgb(255, 255, 255);
+}
+.loesung{
+    display: none;
+}
+.zeige-loesung {
+    display: block;
+    width: 200px;
+    height: 50px;
+    background-color: black;
+    color: white;
+    border: 2px solid gray;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 50px;
+    font-weight: bold;
+}
+code {
+    color:rgb(0, 255, 17);
+}
+*::-webkit-scrollbar {
+    width: 18px;
+}
+
+*::-webkit-scrollbar-track {
+    background: rgb(33, 33, 33);
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    border: 3px solid rgb(0, 0, 0);
+}

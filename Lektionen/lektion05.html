@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <h1>Python Bibliotheken und ihre Einbindung</h1>
+        <p>Python ist eine höhere Programmiersprache, die eine Vielzahl von Bibliotheken zur Verfügung stellt, um die Entwicklung von Anwendungen zu erleichtern. Eine Bibliothek ist eine Sammlung von Funktionen, Klassen, Konstanten und Variablen, die in einer Datei oder einem Verzeichnis gruppiert sind. In dieser HTML-Seite lernst du, wie du Python-Bibliotheken in deinem Code einbindest.</p>
+    
+        <h2>Standardbibliotheken</h2>
+        <p>Die Standardbibliothek von Python ist eine Sammlung von Bibliotheken, die bei der Installation von Python automatisch mitgeliefert wird. Sie enthält eine Vielzahl von Modulen, die viele grundlegende Aufgaben abdecken, wie z.B. das Lesen und Schreiben von Dateien, Netzwerkprogrammierung, Datums- und Zeitmanipulation, Mathematik und vieles mehr.</p>
+        <p>Um eine Bibliothek aus der Standardbibliothek in deinem Python-Code zu verwenden, musst du das betreffende Modul einfach importieren. Hier ist ein Beispiel:</p>
+        <pre><code>import os
+    
+        print(os.getcwd())</code></pre>
+        <p>Dieses Beispiel importiert das Modul "os", das Funktionen zur Interaktion mit dem Betriebssystem bereitstellt. Der Befehl "os.getcwd()" gibt das aktuelle Arbeitsverzeichnis zurück.</p>
+    
+        <h2>Externe Bibliotheken</h2>
+        <p>Zusätzlich zur Standardbibliothek gibt es eine riesige Sammlung von Python-Bibliotheken von Drittanbietern, die du in deinen Projekten verwenden kannst. Einige der beliebtesten Bibliotheken sind:</p>
+        <ul>
+            <li>NumPy - für numerische Berechnungen und Arrays</li>
+            <li>Pandas - für Datenanalyse und -manipulation</li>
+            <li>Matplotlib - für die Erstellung von Diagrammen und Grafiken</li>
+            <li>Requests - für die Arbeit mit HTTP-Anfragen und -Antworten</li>
+        </ul>
+        <p>Um eine externe Bibliothek in deinem Python-Code zu verwenden, musst du sie zunächst installieren. Dies erfolgt normalerweise über den Python Package Manager "pip". Hier ist ein Beispiel für die Installation der Bibliothek "NumPy":</p>
+        <pre><code>pip install numpy</code></pre>
+        <p>Nach der Installation kannst du das Modul einfach importieren und verwenden. Hier ist ein Beispiel:</p>
+        <pre><code>import numpy as np
+    
+        arr = np.array([1, 2, 3, 4, 5])
+        print(arr)</code></pre>
+        <p>Dieses Beispiel importiert das Modul "numpy" und gibt ein Array aus, das mit der Funktion "np.array()" erstellt wurde.</p>
+
+        <h2>Folgende Bibliotheken werden im Unterricht eingesetzt</h2>
+        <ul>
+            <li><a href="https://github.com/topics/tkinter-python" target="_blank">TkInter</a></li>
+            <li><a href="https://github.com/TomSchimansky/CustomTkinter" target="_blank">customTkInter</a></li>
+            <li><a href="https://github.com/pygame/" target="_blank">pygame</a></li>
+          </ul>
+    
+    </body>
+</html>

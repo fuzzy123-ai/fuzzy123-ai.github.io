@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="script.js"></script>
+        <link rel="stylesheet" href="styles.css">
+        <title>Schleifen in Python</title>
+    </head>
+    <body>
+        <h1>Schleifen in Python</h1>
+        <h2>For-Schleifen</h2>
+        <p>Eine For-Schleife wird verwendet, um über eine bestimmte Sequenz von Elementen zu iterieren, wie zum Beispiel eine Liste oder einen String:</p>
+        <pre><code>
+for element in liste:
+    print(element)
+        </code></pre>
+        <p>Dabei wird die Schleife für jedes Element in der Liste ausgeführt und das Element in der Variablen 'element' gespeichert.</p>
+        <h2>While-Schleifen</h2>
+        <p>Eine While-Schleife wird so lange ausgeführt, wie eine bestimmte Bedingung erfüllt ist:</p>
+        <pre><code>
+while bedingung:
+    # Schleifeninhalt
+        </code></pre>
+        <p>Dabei wird der Schleifeninhalt ausgeführt, solange die Bedingung wahr ist.</p>
+        <h2>Beispielaufgaben</h2>
+        <p>Übe das Schleifen in Python mit den folgenden Beispielaufgaben:</p>
+        <div>
+            <h3>Aufgabe 1</h3>
+            <p>Erstelle eine For-Schleife, die die Zahlen von 1 bis 10 ausgibt.</p>
+
+        </div>
+        <div>
+            <h3>Aufgabe 2</h3>
+            <p>Erstelle eine While-Schleife, die alle ungeraden Zahlen von 1 bis 20 ausgibt.</p>
+        </div>
+        <button class="zeige-loesung" onclick="zeigeLoesung()">Lösung zeigen</button>
+        <div class="loesung glas">
+            <p>Aufgabe 1</p>
+            <pre><code>
+            for zahl in range(1, 11):
+            print(zahl)
+            </code></pre>
+            <p> Aufgabe 2</p>
+            <pre><code>
+        zahl = 1
+        while zahl <= 20:
+            if zahl % 2 != 0:
+                print(zahl)
+            zahl += 1
+            </code></pre>
+        </div>
+    </body>
+</html>

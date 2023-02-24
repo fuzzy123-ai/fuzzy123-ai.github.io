@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="script.js"></script>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <h1>Bedingungen in Python</h1>
+        <p>
+            In Python können Bedingungen mit dem <code>if</code>-Statement ausgedrückt werden.
+            Das Statement wird verwendet, um einen Block von Code auszuführen, wenn eine Bedingung erfüllt ist.
+            Wenn die Bedingung nicht erfüllt ist, wird der Code-Block übersprungen.
+        </p>
+        <h2>Beispiel</h2>
+        <p>Das folgende Beispiel zeigt die Verwendung von <code>if</code> und <code>else</code> in Python:</p>
+        <pre>
+    x = 5
+    if x &gt; 10:
+        print("x ist größer als 10")
+    else:
+        print("x ist kleiner oder gleich 10")
+        </pre>
+        <p>
+            Der Code prüft, ob die Variable <code>x</code> größer als 10 ist.
+            Da dies nicht der Fall ist, wird der Code-Block unterhalb von <code>else</code> ausgeführt und "x ist kleiner oder gleich 10" wird ausgegeben.
+        </p>
+        <h2>Übungsaufgaben</h2>
+        <p>Übe die Verwendung von Bedingungen in Python, indem du die folgenden Aufgaben löst:</p>
+        <ol>
+            <li>Erstelle eine Variable <code>y</code> mit dem Wert 8. Schreibe eine Bedingung, die prüft, ob <code>y</code> größer als 10 ist. Wenn dies der Fall ist, gib "y ist größer als 10" aus, ansonsten gib "y ist kleiner oder gleich 10" aus.</li>
+            <li>Erstelle eine Variable <code>z</code> mit dem Wert -3. Schreibe eine Bedingung, die prüft, ob <code>z</code> kleiner als 0 ist. Wenn dies der Fall ist, gib "z ist negativ" aus, ansonsten gib "z ist nicht negativ" aus.</li>
+        </ol>
+        <button class="zeige-loesung" onclick="zeigeLoesung()">Lösung zeigen</button>
+        <div class="loesung glas">
+            <h3>Lösungen</h3>
+            <ol>
+            <li>
+            <pre><code>y = 8
+            if y > 10:
+                print("y ist größer als 10")
+            else:
+                print("y ist kleiner oder gleich 10")</code></pre>
+            </li>
+            <li>
+            <pre><code>z = -3
+            if z < 0:
+                print("z ist negativ")
+            else:
+                print("z ist nicht negativ")</code></pre>
+            </li>
+            </ol>
+            </div>
+    </body>
+</html>

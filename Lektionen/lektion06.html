@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <script src="script.js"></script>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <h1>Dateien einbinden in Python</h1>
+        <p>Um Dateien in Python einzubinden, gibt es verschiedene Möglichkeiten, je nachdem welche Art von Datei es ist und was man damit machen möchte.</p>
+less
+Copy code
+    <h3>Textdateien einlesen</h3>
+    <p>Um eine Textdatei einzulesen, kann man die Funktion <code>open()</code> verwenden. Hierbei wird die Datei im Lesemodus geöffnet und mit der Methode <code>read()</code> ausgelesen.</p>
+    <pre>
+      <code>
+        with open('meine_datei.txt', 'r') as f:
+            inhalt = f.read()
+      </code>
+    </pre>
+    
+    <h3>Bilder einbinden</h3>
+    <p>Um Bilder einzubinden, kann man das Modul <code>PIL</code> verwenden. Hierbei wird das Bild mit der Methode <code>Image.open()</code> geöffnet und kann dann weiterverarbeitet werden.</p>
+    <pre>
+      <code>
+        from PIL import Image
+
+        img = Image.open('mein_bild.jpg')
+        img.show()
+      </code>
+    </pre>
+    
+    <h3>CSV-Dateien einlesen</h3>
+    <p>Um CSV-Dateien einzulesen, kann man das Modul <code>csv</code> verwenden. Hierbei wird die Datei geöffnet und mit einer Schleife kann man durch die einzelnen Zeilen iterieren und die Daten weiterverarbeiten.</p>
+    <pre>
+      <code>
+        import csv
+
+        with open('meine_csv_datei.csv', 'r') as f:
+            csv_reader = csv.reader(f)
+
+            for row in csv_reader:
+                print(row)
+      </code>
+    </pre>
+    <h1>Übungsaufgaben zum Einbinden von Dateien in Python</h1>
+    <div class="aufgabe glas">
+        <h2>Aufgabe 1</h2>
+        <p>Schreibe ein Python-Programm, das eine Datei mit dem Namen "text.txt" einliest und den Inhalt auf der Konsole ausgibt.</p>
+    </div>
+
+
+    <div class="aufgabe glas">
+        <h2>Aufgabe 2</h2>
+        <p>Schreibe ein Python-Programm, das eine Datei mit dem Namen "zahlen.txt" einliest und alle Zahlen in der Datei addiert.</p>
+    </div>
+    <button class="zeige-loesung" onclick="zeigeLoesung()">Lösung zeigen</button>
+    <div class="loesung glas">
+        <h2>Lösung 1</h2>
+        <pre>
+            <code>
+    with open('text.txt', 'r') as file:
+    print(file.read())
+            </code>
+        </pre>
+        <h2>Lösung 2</h2>
+        <pre>
+            <code>
+    with open('zahlen.txt', 'r') as file:
+    summe = 0
+    for line in file:
+        try:
+         zahl = int(line)
+         summe += zahl
+        except ValueError:
+         continue
+    print("Die Summe der Zahlen in der Datei beträgt:", summe)
+            </code>
+        </pre>
+    </div>
+
+</body>
+
+</html>
