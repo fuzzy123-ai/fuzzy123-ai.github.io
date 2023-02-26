@@ -2,7 +2,7 @@
 <html lang="de">
   <head>
     <meta charset="utf-8">
-    <meta name="Lehrer Katzarow" content="width=device-width, initial-scale=1" url="www.lehrer-katzarow.de">
+    <meta name="viewport" content="width=device-width, initial-scale=1" url="www.lehrer-katzarow.de">
     <title>Informatik Homepage</title>
     <style>
 body {
@@ -230,6 +230,9 @@ body {
     </div>
   
 </div>
+
+
+<!--HIER BEGINNT VIEW 01-->
 <div id="view01" class="view01">
     <div class="programmiersprache">
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1280px-Python-logo-notext.svg.png" width="45px" height="50px"> 
@@ -258,10 +261,10 @@ body {
           <button class="button-78" role="button" onclick="openOverlay('overlay07')">7: Funktionen</button>
       </div>
       <div class="grid-element" id="g8">
-          <button class="button-78" role="button" onclick="openOverlay('overlay08')">Button 8</button>
+          <button class="button-78" role="button" onclick="openOverlay('overlay08')" style="background-color: #CCC; opacity: 0.5;">Button 8</button>
       </div>
       <div class="grid-element" id="g9">
-          <button class="button-78" role="button" onclick="openOverlay('overlay09')">Button 9</button>
+          <button class="button-78" role="button" onclick="openOverlay('overlay09')" style="background-color: #CCC; opacity: 0.5;">Button 9</button>
       </div>
   </div>
   <div class="overlay" id="overlay01">
@@ -328,6 +331,7 @@ body {
     </div>
 </div>
 </div>
+<!--HIER BEGINNT VIEW 02-->
 <div id="view02" class="view02">
     <div class="programmiersprache">
         Lego Spike
@@ -335,38 +339,61 @@ body {
     </div>   
     <div class="grid">
         <div class="grid-element" id="g1">
-            <button class="button-79" role="button" onclick="openOverlay('overlay10')">1:Variablen</button>
+            <button class="button-79" role="button" onclick="openOverlay('lego01')">1:Grundlagen</button>
         </div>
         <div class="grid-element" id="g2">
-            <button class="button-79" role="button" onclick="openOverlay('overlay11')">2:Bedingungen</button>
+            <button class="button-79" role="button" onclick="openOverlay('lego02')">2:Variablen</button>
+
         </div>
         <div class="grid-element" id="g3">
-            <button class="button-79" role="button" onclick="openOverlay('overlay12')">3:Schleifen</button>
+            <button class="button-79" role="button" onclick="openOverlay('lego03')" style="background-color: #CCC; opacity: 0.5;">3:Schleifen</button>
         </div>
         <div class="grid-element" id="g4">
-            <button class="button-79" role="button" onclick="openOverlay('overlay13')">4:Funktionen</button>
+            <button class="button-79" role="button" onclick="openOverlay('lego04')" style="background-color: #CCC; opacity: 0.5;">4:Funktionen</button>
         </div>
         <div class="grid-element" id="g5">
-            <button class="button-79" role="button" onclick="openOverlay('overlay14')">5:Dateien einbinden</button>
+            <button class="button-79" role="button" onclick="openOverlay('lego05')" style="background-color: #CCC; opacity: 0.5;">5:Dateien einbinden</button>
         </div>
         <div class="grid-element" id="g6">
-            <button class="button-79" role="button" onclick="openOverlay('overlay15')">6:Bibliotheken</button>
+            <button class="button-79" role="button" onclick="openOverlay('lego06')" style="background-color: #CCC; opacity: 0.5;">6:Bibliotheken</button>
         </div>
         <div class="grid-element" id="g7">
-            <button class="button-79" role="button" onclick="openOverlay('overlay16')">Button 7</button>
+            <button class="button-79" role="button" onclick="openOverlay('lego07')" style="background-color: #CCC; opacity: 0.5;">Button 7</button>
         </div>
         <div class="grid-element" id="g8">
-            <button class="button-79" role="button" onclick="openOverlay('overlay17')">Button 8</button>
+            <button class="button-79" role="button" onclick="openOverlay('lego08')" style="background-color: #CCC; opacity: 0.5;">Button 8</button>
         </div>
         <div class="grid-element" id="g9">
-            <button class="button-79" role="button" onclick="openOverlay('overlay18')">Button 9</button>
+            <button class="button-79" role="button" onclick="openOverlay('lego09')" style="background-color: #CCC; opacity: 0.5;">Button 9</button>
+        </div>
+    </div>
+    <div class="overlay" id="lego01">
+        <div class="overlay-content">
+            <p class="overlay-header">Python Programmieren</p>
+            <span class="close-btn" onclick="closeOverlay('lego01')">&times;</span> 
+            <iframe class="overlay_iframe" src="Lektionen/lego01.html"></iframe>       
+        </div>
+    </div>
+    <div class="overlay" id="lego02">
+        <div class="overlay-content">
+            <p class="overlay-header">Python Programmieren</p>
+            <span class="close-btn" onclick="closeOverlay('lego02')">&times;</span> 
+            <iframe class="overlay_iframe" src="Lektionen/lego02.html"></iframe>  
+        </div>
+    </div>
+    <div class="overlay" id="lego03">
+        <div class="overlay-content">
+            <p class="overlay-header">Python Programmieren</p>
+            <span class="close-btn" onclick="closeOverlay('lego03')">&times;</span> 
+            <iframe class="overlay_iframe" src=""></iframe>       
         </div>
     </div>
 </div>
-    <div class="grid-footer">
-        <p>Niklas Katzarow - 2023 </br>
-        Alle Inhalte wurden mithilfe von openAI: chatGPT erstellt</br>
-        Alle Bilder sind Eigentum von Wikipedia</p>
+
+<div class="grid-footer">
+    <p>Niklas Katzarow - 2023 </br>
+    Alle Inhalte wurden mithilfe von openAI: chatGPT erstellt</br>
+    Alle Bilder sind eigentum von Wikipedia</p>
     </div>
 </body>
 <script>
