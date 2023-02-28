@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Countdown Timer</title>
+    <style>
+        body {
+          font-size: 2em;
+          background-color: #1a1a1a;
+          color: white;
+        }
+  
+        #counter {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 50vh;
+          font-family: monospace;
+          font-size: 10em;
+          background-color: black;
+          color: #00ff00;
+        }
+  
+        button {
+          display: block;
+          margin: 0 auto;
+          width: 80%;
+          height: 100px;
+          font-size: 1.5em;
+          border-radius: 10px;
+          background-color: #222;
+          color: rgb(0, 0, 0);
+          border: none;
+        }
+  
+        #red-button {
+          background-color: #ff4444;
+        }
+  
+        #yellow-button {
+          background-color: #ffff00;
+        }
+  
+        #green-button {
+          background-color: #00ff00;
+        }
+        #reset-button {
+        background-color: #333;
+        color: #fff;
+        }
+
+        .blink {
+          animation: blink 0.5s linear infinite alternate;
+        }
+  
+        @keyframes blink {
+          from {
+            background-color: white;
+          }
+          to {
+            background-color: red;
+          }
+        }
+      </style>
+  
+  </head>
+  <body>
+    <div id="counter">00</div>
+    <button id="red-button" onclick="startCountdown(5, 'countdown.mp3', '')">5 Seconds</button>
+    <button id="yellow-button" onclick="startCountdown(8, 'countdown.mp3', '')">8 Seconds</button>
+    <button id="green-button" onclick="startCountdown(12, 'countdown.mp3', '')">12 Seconds</button>
+    <button id="reset-button" onclick="resetCountdown()">Reset</button>
+    <audio id="countdown-sound" src=""></audio>
+    <audio id="beep" src=""></audio>
+    <script>
+      var counter = document.getElementById("counter");
+      var intervalId;
+      var countdownSound = document.getElementById("countdown-sound");
+      var beep = document.getElementById("beep");
+      var initialVolume = 0.5;
+      var maxVolume = 0.9;
+
+      function startCountdown(seconds, countdownAudioFile, beepAudioFile) {
+        clearInterval(intervalId);
+        counter.innerText = seconds;
+        countdownSound.src = countdownAudioFile;
+        countdownSound.volume = initialVolume;
+        countdownSound.play();
+        var countdownIntervalId = setInterval(function() {
+          countdownSound.volume += (maxVolume - initialVolume) / (seconds * 10);
+          seconds--;
+          counter.innerText = seconds.toString().padStart(2, '0');
+          if (seconds === 0) {
+            clearInterval(intervalId);
+            clearInterval(countdownIntervalId);
+            counter.classList.add("blink");
+            beep.src = "beep.mp3";
+            beep.play();
+            setTimeout(function() {
+              counter.classList.remove("blink");
+            }, 3000);
+            stopCountdownSound();
+          }             
+        }, 1000);
+        setTimeout(function() {
+          beep.src = beepAudioFile;
+          beep.volume = initialVolume;
+          beep.play();
+          var beepIntervalId = setInterval(function() {
+            beep.volume += (maxVolume - initialVolume) / (seconds * 10);
+          }, 100);
+          setTimeout(function() {
+            clearInterval(beepIntervalId);
+            beep.volume = initialVolume;
+          }, seconds * 1000);
+        }, (seconds * 1000) - 3000);
+      }
+      
+            function stopCountdownSound() {
+        countdownSound.pause();
+        countdownSound.currentTime = 0;
+        }
+        function resetCountdown() {
+            stopCountdownSound();
+            beep.pause();
+            beep.currentTime = 0;
+            clearInterval(timerInterval);
+            timerRunning = false;
+            counter.innerHTML = "00";
+            counter.classList.remove("blink", "beep");
+            }
+
+
+    </script>
+  </body>
+</html>
