@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <script src="script.js"></script>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+      <h1>Informationen Verschlüsseln</h1>
+      <p>Mit der Python Bibliothek haslib lassen sich z.B. Strings in verschlüsselte 'hashs' umwandeln</p>
+      <p><pre>
+        Importiere hashlib
+        <code>hashlib.sha256(password.encode()).hexdigest()</code> ist eine Methode aus dem hashlib-Modul in Python.
+        Die Methode benutzt den SHA-256 Hash-Algorithmus auf den gegebenen String.
+        Der password-String wird zuerst als Byte-String kodiert (encode()) und dann der Hash-Algorithmus angewendet.
+        Das Ergebnis des Hash-Algorithmus ist ein Byte-String, der dann mit der hexdigest()-Methode in einen hexadezimalen String umgewandelt wird.
+        Dieser hexadezimale String kann dann zur Speicherung des Passworts oder zur Überprüfung von Benutzeranmeldedaten verwendet werden.</p>
+      </pre>
+
+
+      <button id="toggle-button"  class="zeige-loesung" onclick="zeigeLoesung()">Lösung zeigen</button>
+      <div class="loesung glas">
+    <pre><code>
+      import tkinter as tk
+      from tkinter import messagebox
+      import hashlib
+
+      def check_login():
+          username = username_entry.get()
+          password = password_entry.get()
+
+          hashed_password = hashlib.sha256(password.encode()).hexdigest()
+
+          if username == "benutzer" and hashed_password == "f5b2c5e5e8d5c5d5b5e2d9c0b8d5e0c5d5e5e8d5c5d5b5e2d9c0b8d5e0c5d5":
+              messagebox.showinfo("Success", "Login successful!")
+          else:
+              messagebox.showerror("Error", "Invalid login credentials.")
+
+    root = tk.Tk()
+    root.title("Login")
+    root.geometry("300x150")
+
+    username_label = tk.Label(root, text="Username:")
+    username_label.pack()
+
+    username_entry = tk.Entry(root)
+    username_entry.pack()
+
+    password_label = tk.Label(root, text="Password:")
+    password_label.pack()
+
+    password_entry = tk.Entry(root, show="*")
+    password_entry.pack()
+
+    submit_button = tk.Button(root, text="Submit", command=check_login)
+    submit_button.pack()
+
+    root.mainloop()
+
+</code></pre>
+<h2>Ganz sicher gehen? Füge Salz hinzu</h2>
+<p>Um das verschlüsselte Passwort noch sicherer zu machen, können wir einen sogenannten 'Salt' hinzufügen.</br>
+  Wir hängen eine zufällige Zeichenkette ans Passwort bevor wir es verschlüsseln, </br>
+  wenn auf einer anderen Website dein verschlüsseltes Passwort geklaut wurde, </br>
+  kann es so nicht auf deiner Anmeldeseite bentuzt werden.</br>
+</p>
+<code>
+  <pre>
+    #Erzeugt einen String mit 16 zufälligen Zeichen aus der gegebenen Liste von Zeichen
+    salt = ''.join(random.choices('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890', k=16))
+  </pre>
+</code>
+      </div>
+    </body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <script src="script.js"></script>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+      <h1>Benutzeranmeldung in Python erstellen</h1>
+      <div id="aufgabe" class="glas">  
+      </br> 
+      <h2><u>Aufgabe:</u></h2> 
+      Schreibe ein Python-Programm, das ein Fenster mit einem Benutzernamen- und Passwort-Eingabefeld sowie einem Absenden-Button enthält.</br>
+      Wenn der Benutzername 'Benutzer' und das Passwort '12345678' sind, gib eine Erfolgsmeldung aus.</br>  
+      Wenn die Anmeldeinformationen ungültig sind, gib eine Fehlermeldung aus."
+    </br>  
+    </div>
+      <h3>Vorgehen:</h3>
+      <ul>
+        <li>Importiere tkinter</li>
+        <li>Erstelle ein Fenster mit TkInter:</li>
+        <li><pre><code>          root = tk.Tk()            //das Hauptfenster wird definiert, Groß- und Kleinschreibung beachten!
+          root.title("Login")       //Name vom Fenster
+          root.geometry("300x150")  //300x150 ist die Größe in Pixeln
+</code></pre></li>
+        <li>statt root, könntest du es auch hauptfenster nennen</li>
+        <li>Erstelle <b>"label"</b> (Text)</li>
+        <li>Erstelle <b>"entry"</b> (Eingabe), mit <code>show="*"</code>können wir die Texteingabe verschleiern</li>
+        <li>Erstelle <b>"button"</b> (Knopf), der button soll den <code>command=check_login</code> ausführen</li>
+        <li><b>Nicht vergessen! Jedes Element muss gepackt werden mit <code>button.pack()</code></li></b>
+        <li>Starte die mainloop mit <code>root.mainloop()</code> </li>
+        <li>Definiere eine Funktion: <code>check_login</code></li>
+        <li>Mit dem Befehl <code>element.get()</code> können wir eine Eingabe auslesen</li>
+        <li>Wir benutzen <code>from tkinter import messagebox</code> um die Möglichkeit zu bekomen Popup Windows zu erzeugen</li>
+        <li>Mesasgebox.showinfo("Titel", "Text")</li>
+        <li>statt Info können wir auch eine Error box erzeugen</li>
+
+      </ul>
+    </br>
+      <button id="toggle-button"  class="zeige-loesung" onclick="zeigeLoesung()">Lösung zeigen</button>
+      <div class="loesung glas">
+    <pre><code>   import tkinter as tk
+    from tkinter import messagebox
+
+    def check_login():
+        username = username_entry.get()
+        password = password_entry.get()
+
+        if username == "benutzer" and password == "12345678":
+            messagebox.showinfo("Success", "Login successful!")
+        else:
+            messagebox.showerror("Error", "Invalid login credentials.")
+
+    root = tk.Tk()
+    root.title("Login")
+    root.geometry("300x150")
+
+    username_label = tk.Label(root, text="Username:")
+    username_label.pack()
+
+    username_entry = tk.Entry(root)
+    username_entry.pack()
+
+    password_label = tk.Label(root, text="Password:")
+    password_label.pack()
+
+    password_entry = tk.Entry(root, show="*")
+    password_entry.pack()
+
+    submit_button = tk.Button(root, text="Submit", command=check_login)
+    submit_button.pack()
+
+    root.mainloop()
+</code></pre>
+      </div>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="script.js"></script>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+<body>
+<h1>Funktionen in Python</h1>
+<p>Funktionen in Python sind wiederverwendbare Codeblöcke, die einen bestimmten Zweck erfüllen.</br>
+  Sie werden in der Regel geschrieben, um Code zu organisieren, die Lesbarkeit zu verbessern und die Wiederverwendbarkeit von Code zu fördern.</p>
+
+<h2>Einfaches Beispiel</h2>
+<pre>
+  <code>
+    def hallo_welt():
+        print("Hallo Welt")
+  </code>
+</pre>
+<p>Die Funktion wird aufgerufen, indem man einfach den Namen der Funktion eingibt:</p>
+<pre>
+  <code>
+    hallo_welt()
+  </code>
+</pre>
+
+<h2>Komplizierteres Beispiel</h2>
+<pre>
+  <code>
+    def fibonacci(n):
+        if n <= 1:
+            return n
+        else:
+            return (fibonacci(n-1) + fibonacci(n-2))
+  </code>
+</pre>
+<p>Die Funktion wird aufgerufen, indem man den Parameter 'n' übergibt:</p>
+<pre>
+  <code>
+    print(fibonacci(5))
+  </code>
+</pre>
+<p>Das Ergebnis lautet: 5 (da die 5. Zahl in der Fibonacci-Folge 5 ist)</p>
+
+<h2>Wichtige Dinge, die man bei Funktionen beachten sollte</h2>
+<ul>
+    <li>Funktionen sollten einen klaren Zweck erfüllen und gut benannt sein.</li>
+    <li>Funktionen sollten so geschrieben sein, dass sie wiederverwendbar sind.</li>
+    <li>Funktionen sollten so kurz wie möglich sein.</li>
+    <li>Funktionen sollten eine klare Dokumentation haben, die beschreibt, was sie tun und welche Parameter sie benötigen.</li>
+</ul>
+
+<h1>Übungsaufgaben zum Erstellen von Funktionen in Python</h1>
+<div class="aufgabe glas">
+    <h2>Aufgabe 1</h2>
+    <p>Schreibe eine Funktion, die den größten Wert in einer Liste von Zahlen zurückgibt.</p>
+</div>
+
+<button id="toggle-button" class="zeige-loesung" onclick="zeigeLoesung()">Lösung zeigen</button>
+<div class="loesung glas">
+    <h2>Lösung:</h2>
+      <h1>Größter Wert in einer Liste</h1>
+      <p>Die Funktion <code>groesster_wert()</code> nimmt eine Liste von Zahlen und gibt den größten Wert zurück.</p>
+      <pre>
+        <code>
+          def groesster_wert(liste: list) -> float:
+              """
+              Diese Funktion nimmt eine Liste von Zahlen und gibt den größten Wert zurück.
+    
+              Argumente:
+              liste -- Eine Liste von Zahlen.
+    
+              Rückgabe:
+              Der größte Wert in der Liste.
+              """
+              # Setze den Anfangswert des größten Werts auf den ersten Wert in der Liste.
+              groesster = liste[0]
+    
+              # Durchlaufe alle Werte in der Liste und aktualisiere den größten Wert.
+              for wert in liste:
+                  if wert > groesster:
+                      groesster = wert
+    
+              # Gib den größten Wert zurück.
+              return groesster
+        </code>
+      </pre>
+      <p>Beispiel:</p>
+      <pre>
+        <code>
+          zahlen = [5, 8, 2, 10, 3]
+          groesster_zahl = groesster_wert(zahlen)
+          print("Der größte Wert in der Liste ist:", groesster_zahl)
+        </code>
+      </pre>
+      <p>
+        Die Syntax "-> float" am Ende der Zeile gibt an, dass die Funktion einen Fließkommawert zurückgibt.</br> Auch diese Information ist optional, da Python die Rückgabeart dynamisch erkennt.</br> Es kann jedoch hilfreich sein, die Rückgabeart für andere Entwickler oder für die Code-Dokumentation zu definieren.
+      </p>
+    </body>
+    </html>
+
