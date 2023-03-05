@@ -64,10 +64,10 @@ body {
   grid-template-columns: repeat(3, 200px);
   grid-gap: 3vw;
   background-color: #e6e6e6;
-  align-items: center;
+  align-items: left;
   position: relative;
   top: 10vh;
-  left: 35%;
+  left: 10%;
   width: fit-content;
   height: fit-content;
   padding: 2vw;
@@ -83,7 +83,7 @@ body {
 .grid-header {
   position: relative;
   top: 50%;
-  left: 0%;
+  left: -20%;
   background-color: #e6e6e6;
   width: 20vw;
   height: 50px;
@@ -99,8 +99,8 @@ body {
 .grid-footer {
   position: relative;
   width: fit-content;
-  top: 40vh;
-  left: 35%;
+  bottom: -10vh;
+  left: 15%;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-style: normal;
   font-size: 18px;
@@ -121,7 +121,9 @@ body {
   border-radius: 20px;
   padding: 5px;
   width: 12vw;
+  min-width: 150px;
   height: 2vh;
+  min-height: 30px;
   position: relative;
 }
 
@@ -133,6 +135,8 @@ body {
   left: 5px;
   width: 2.5vh;
   height: 2.5vh;
+  min-width: 30px;
+  min-height: 30px;
   border-radius: 50%;
   background-color: #000000;
   transition: left 0.5s ease;
@@ -143,7 +147,7 @@ body {
 }
 
 .toggle-switch input[type="checkbox"]:checked + label::after {
-  left: calc(100% - 2.5vh);
+  left: calc(100% - 40px);
 }
 
 /*VIEWPORTS*/
@@ -165,6 +169,8 @@ body {
     cursor: pointer; /* Add a pointer cursor on mouse-over */
     background-color: #04AA6D;
     width: 10vw;
+    min-width: 200px;
+    min-height: 50px;
     border-radius: 5px;
 }
 
@@ -179,6 +185,8 @@ body {
   cursor: pointer;
   background-color: #044faa;
   width: 10vw;
+  min-width: 200px;
+  min-height: 50px;
   border-radius: 5px;
 }
 
@@ -190,13 +198,14 @@ body {
 .header-tabelle {
   position: relative;
   display: grid;
-  left: 40vw;
+  left: 100%;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 15px;
   align-items: center;
   background-color: #f8f1d5;
   height: 50px;
   width: 120%;
+  min-width: 400px;
   border-style: solid;
   border-radius: 15px;
 }
@@ -206,7 +215,7 @@ body {
   width: 90%;
   height: 50px;
   top: 5vh;
-  left: 5%;
+  left: -20%;
   text-align: center;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', sans-serif;
   font-size: 50px;
