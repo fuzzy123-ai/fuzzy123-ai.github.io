@@ -50,6 +50,7 @@ body {
 .overlay_iframe {
   width: 100%; /* geändert */
   height: 90%;
+  padding-left: 15px;
 }
 
 .overlay-header {
