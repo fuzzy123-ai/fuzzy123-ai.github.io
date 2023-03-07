@@ -1,3 +1,4 @@
+* {padding-left: 10px;}
 body {
     background-color: #1d1d1d;
     color: #ffffff;
@@ -6,6 +7,7 @@ body {
     height: 600;
     line-height: 140%;
 }
+
 .glas{
     background: #32342e;
     border: 1px solid #4b4b4b;
@@ -28,6 +30,7 @@ body {
     text-align: center;
     line-height: 50px;
     font-weight: bold;
+    padding: 0px;
 }
 code {
     color:rgb(0, 255, 17);
@@ -46,6 +49,3 @@ code {
     border: 3px solid rgb(0, 0, 0);
 }
 
-ul{
-    text-indent: 5em;
-}
