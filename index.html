@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notenübersicht - Versetzungsprüfung M-Niveau</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f2f5;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px 30px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .header h1 {
+            font-size: 1.8em;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            opacity: 0.9;
+        }
+
+        .upload-section {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .upload-area {
+            border: 3px dashed #667eea;
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            background: #f8f9ff;
+            transition: all 0.3s;
+        }
+
+        .upload-area:hover {
+            background: #eef1ff;
+            border-color: #764ba2;
+        }
+
+        .upload-area input[type="file"] {
+            display: none;
+        }
+
+        .upload-area label {
+            display: inline-block;
+            padding: 15px 35px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+
+        .upload-area label:hover {
+            transform: scale(1.05);
+        }
+
+        .upload-info {
+            margin-top: 15px;
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .file-list {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .file-tag {
+            background: #e8ebff;
+            color: #667eea;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .file-tag .remove {
+            cursor: pointer;
+            font-weight: bold;
+            color: #dc3545;
+        }
+
+        /* Zusammenfassung */
+        .summary {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .summary h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8ebff 100%);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        /* Klassen-Container */
+        .klasse-container {
+            background: white;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        .klasse-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 18px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* G-Niveau Header - Orange */
+        .klasse-header.g-niveau {
+            background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+        }
+
+        /* Gemischtes Niveau Header */
+        .klasse-header.gemischt {
+            background: linear-gradient(135deg, #667eea 0%, #ff9800 100%);
+        }
+
+        .klasse-header h2 {
+            font-size: 1.3em;
+        }
+
+        .klasse-stats {
+            display: flex;
+            gap: 20px;
+            font-size: 0.95em;
+        }
+
+        .klasse-stats span {
+            background: rgba(255,255,255,0.2);
+            padding: 5px 12px;
+            border-radius: 20px;
+        }
+
+        /* Niveau-Badge */
+        .niveau-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 0.8em;
+            margin-left: 8px;
+        }
+
+        .niveau-badge.m-niveau {
+            background: #667eea;
+            color: white;
+        }
+
+        .niveau-badge.g-niveau {
+            background: #ff9800;
+            color: white;
+        }
+
+        .niveau-col {
+            width: 40px;
+        }
+
+        /* Noten-Tabelle */
+        .noten-tabelle-container {
+            overflow-x: auto;
+            padding: 0;
+        }
+
+        .noten-tabelle {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9em;
+        }
+
+        .noten-tabelle th {
+            background: #f8f9fa;
+            padding: 12px 8px;
+            text-align: center;
+            font-weight: 600;
+            color: #444;
+            border-bottom: 2px solid #dee2e6;
+            white-space: nowrap;
+            position: sticky;
+            top: 0;
+        }
+
+        .noten-tabelle th.name-col {
+            text-align: left;
+            padding-left: 20px;
+            min-width: 180px;
+        }
+
+        .noten-tabelle th.hauptfach {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .noten-tabelle th.durchschnitt {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .noten-tabelle td {
+            padding: 10px 8px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .noten-tabelle td.name-col {
+            text-align: left;
+            padding-left: 20px;
+            font-weight: 500;
+        }
+
+        .noten-tabelle tr:hover {
+            background: #f8f9ff;
+        }
+
+        .noten-tabelle tr.gefaehrdet {
+            background: #fff5f5;
+        }
+
+        .noten-tabelle tr.gefaehrdet:hover {
+            background: #ffebeb;
+        }
+
+        /* Noten-Zellen */
+        .note {
+            display: inline-block;
+            min-width: 28px;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        .note.note-1, .note.note-2 {
+            background: #c8e6c9;
+            color: #2e7d32;
+        }
+
+        .note.note-3, .note.note-4 {
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .note.note-5 {
+            background: #ffcdd2;
+            color: #c62828;
+        }
+
+        .note.note-6 {
+            background: #ef5350;
+            color: white;
+        }
+
+        .note.leer {
+            background: #f0f0f0;
+            color: #999;
+            font-weight: normal;
+        }
+
+        .note.note-inf-ignoriert {
+            background: #e0e0e0;
+            color: #757575;
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+
+        /* Durchschnitt-Zellen */
+        .durchschnitt {
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        .durchschnitt.gut {
+            background: #c8e6c9;
+            color: #2e7d32;
+        }
+
+        .durchschnitt.ok {
+            background: #fff9c4;
+            color: #f57f17;
+        }
+
+        .durchschnitt.kritisch {
+            background: #ffcdd2;
+            color: #c62828;
+        }
+
+        /* Versetzungsstatus */
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .status-badge.versetzt {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .status-badge.nicht-versetzt {
+            background: #f44336;
+            color: white;
+        }
+
+        .status-badge.gefaehrdet {
+            background: #ff9800;
+            color: white;
+        }
+
+        /* Legende */
+        .legende {
+            background: white;
+            padding: 20px 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .legende h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .legende-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .legende-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9em;
+        }
+
+        .legende-color {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                padding: 10px;
+            }
+
+            .upload-section, .legende {
+                display: none;
+            }
+
+            .klasse-container {
+                break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+
+            .noten-tabelle {
+                font-size: 0.8em;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.4em;
+            }
+
+            .klasse-header {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .klasse-stats {
+                flex-wrap: wrap;
+            }
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 60px;
+            color: #888;
+        }
+
+        .no-data-icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+        }
+
+        /* Filter-Button */
+        .filter-section {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 15px 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .filter-section label {
+            font-weight: 500;
+            color: #555;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .filter-btn:hover {
+            background: #f0f3ff;
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-color: transparent;
+        }
+
+        /* Verstecke nur tbody-Zeilen ohne gefaehrdet-Klasse */
+        .hide-ok .noten-tabelle tbody tr:not(.gefaehrdet) {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📊 Notenübersicht - Versetzungsprüfung</h1>
+        <p>Realschule Baden-Württemberg • M-Niveau & G-Niveau • Versetzungsordnung vom 19. April 2016</p>
+    </div>
+
+    <div class="upload-section">
+        <div class="upload-area">
+            <label for="csvFiles">
+                📁 CSV-Dateien auswählen (mehrere möglich)
+            </label>
+            <input type="file" id="csvFiles" accept=".csv" multiple onchange="handleFileSelect(event)">
+            <div class="upload-info">
+                Unterstützt Exporte aus dem Notenprogramm • Mehrere Klassen gleichzeitig importieren
+            </div>
+        </div>
+        <div class="file-list" id="fileList"></div>
+    </div>
+
+    <div class="legende">
+        <h3>📌 Legende</h3>
+        <div class="legende-items">
+            <div class="legende-item">
+                <div class="legende-color" style="background: #c8e6c9;"></div>
+                <span>Note 1-2 (Ausgleichsfähig)</span>
+            </div>
+            <div class="legende-item">
+                <div class="legende-color" style="background: #f5f5f5; border: 1px solid #ddd;"></div>
+                <span>Note 3-4 (Befriedigend/Ausreichend)</span>
+            </div>
+            <div class="legende-item">
+                <div class="legende-color" style="background: #ffcdd2;"></div>
+                <span>Note 5 (Gefährdet)</span>
+            </div>
+            <div class="legende-item">
+                <div class="legende-color" style="background: #ef5350;"></div>
+                <span>Note 6 (Stark gefährdet)</span>
+            </div>
+            <div class="legende-item">
+                <div class="legende-color" style="background: #e8f5e9; border: 2px solid #4CAF50;"></div>
+                <span>Hauptfach (D, M, E, T/F/AES)</span>
+            </div>
+            <div class="legende-item">
+                <div class="legende-color" style="background: #e0e0e0; text-decoration: line-through;"></div>
+                <span>INF 5/6 (wird ignoriert - zählt nur positiv)</span>
+            </div>
+            <div class="legende-item">
+                <div class="legende-color" style="background: #667eea;"></div>
+                <span>M-Niveau (Realschul-Niveau)</span>
+            </div>
+            <div class="legende-item">
+                <div class="legende-color" style="background: #ff9800;"></div>
+                <span>G-Niveau (Hauptschul-Niveau)</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="summary" class="summary" style="display: none;">
+        <h2>📈 Gesamtübersicht</h2>
+        <div class="stats-grid" id="statsGrid"></div>
+    </div>
+
+    <div id="filterSection" class="filter-section" style="display: none;">
+        <label>🔍 Filter:</label>
+        <button class="filter-btn" id="filterBtn" onclick="toggleFilter()">
+            ⚠️ Nur gefährdete Schüler anzeigen
+        </button>
+    </div>
+
+    <div id="klassenContainer"></div>
+
+    <div id="noData" class="no-data">
+        <div class="no-data-icon">📂</div>
+        <p>Laden Sie CSV-Dateien hoch, um die Notenübersicht zu sehen.</p>
+    </div>
+
+    <script>
+        // ==================== KONFIGURATION ====================
+        const FACH_MAPPING = {
+            'D': 'Deutsch',
+            'E': 'Englisch',
+            'M': 'Mathematik',
+            'T': 'Technik',
+            'F': 'Französisch',
+            'AES': 'AES',
+            'G': 'Geschichte',
+            'GES': 'Geschichte',
+            'GEO': 'Geographie',
+            'EK': 'Erdkunde',
+            'GK': 'Gemeinschaftskunde',
+            'WBS': 'WBS',
+            'PH': 'Physik',
+            'CH': 'Chemie',
+            'BIO': 'Biologie',
+            'MUS': 'Musik',
+            'BK': 'Kunst',
+            'SPO': 'Sport',
+            'SPO-W': 'Sport',
+            'SPO-M': 'Sport',
+            'ETH': 'Ethik',
+            'RRK': 'kath. Rel.',
+            'REV': 'ev. Rel.',
+            'INF': 'Informatik',
+            'IuM': 'Informatik'
+        };
+
+        const KERNFAECHER = ['D', 'E', 'M'];
+        const WAHLPFLICHTFAECHER = ['T', 'F', 'AES'];
+        const WAHLFACH_NUR_POSITIV = ['INF']; // Zählt nur positiv, 5/6 werden ignoriert
+
+        // Feste Reihenfolge der Fächer für konsistente Anzeige
+        const FACH_REIHENFOLGE = [
+            'D', 'E', 'M',  // Kernfächer zuerst
+            'T', 'F', 'AES', // Wahlpflichtfächer
+            'G', 'GES', 'GEO', 'EK', 'GK', 'WBS', // Gesellschaftswissenschaften
+            'PH', 'CH', 'BIO', // Naturwissenschaften
+            'MUS', 'BK', 'SPO', 'SPO-W', 'SPO-M', // Musisch-Künstlerisch
+            'ETH', 'RRK', 'REV', // Religion/Ethik
+            'INF', 'IuM' // Informatik
+        ];
+
+        // ==================== DATENSTRUKTUREN ====================
+        let alleKlassen = {};
+        let geladeneFiles = new Set();
+
+        // ==================== NOTENKONVERTIERUNG ====================
+        function konvertiereNote(noteStr) {
+            if (!noteStr || noteStr.trim() === '' || noteStr === '--' || noteStr.toLowerCase() === 'x') {
+                return null;
+            }
+
+            const cleaned = noteStr.trim();
+
+            if (/^[1-6]$/.test(cleaned)) {
+                return parseInt(cleaned);
+            }
+
+            const rangeMatch = cleaned.match(/^([1-6])-([1-6])$/);
+            if (rangeMatch) {
+                const note1 = parseInt(rangeMatch[1]);
+                const note2 = parseInt(rangeMatch[2]);
+                return Math.round((note1 + note2) / 2);
+            }
+
+            const tendenzMatch = cleaned.match(/^([1-6])[-+]$/);
+            if (tendenzMatch) {
+                return parseInt(tendenzMatch[1]);
+            }
+
+            const parsed = parseInt(cleaned);
+            if (!isNaN(parsed) && parsed >= 1 && parsed <= 6) {
+                return parsed;
+            }
+
+            return null;
+        }
+
+        // ==================== CSV PARSING ====================
+        function parseCSV(content, filename) {
+            const lines = content.split('\n').filter(line => line.trim());
+            
+            // Erkenne Zeugnistyp (Halbjahresinformation vs Halbjahreszeugnis)
+            let zeugnisTyp = 'Halbjahresinformation';
+            for (const line of lines) {
+                if (line.toLowerCase().includes('halbjahreszeugnis')) {
+                    zeugnisTyp = 'Halbjahreszeugnis';
+                    break;
+                }
+            }
+            
+            // Finde Klassenbezeichnung (Klasse: oder Klassengruppe: oder Klassengr.)
+            let klassenName = 'Unbekannte Klasse';
+            let klassenstufe = 0;
+            for (const line of lines) {
+                // Versuche verschiedene Formate: "Klasse: 5a", "Klassengruppe: 9a_G", "Klassengr. 9a_G:"
+                // Robuster Regex der auch Sonderzeichen und verschiedene Trennzeichen berücksichtigt
+                let match = line.match(/(?:Klasse(?:ngruppe)?|Klassengr\.?)\s*[:;]?\s*(\d+)([a-zA-Z0-9_-]*)/i);
+                if (match) {
+                    klassenstufe = parseInt(match[1]);
+                    klassenName = `Klasse ${match[1]}${match[2]}`;
+                    console.log(`Klasse erkannt: ${klassenName} aus Zeile: ${line.substring(0, 50)}`);
+                    break;
+                }
+            }
+            
+            // Debug: Wenn keine Klasse gefunden, logge die ersten Zeilen
+            if (klassenName === 'Unbekannte Klasse') {
+                console.warn('Keine Klasse gefunden. Erste 10 Zeilen:', lines.slice(0, 10));
+            }
+
+            // Finde Header-Zeile
+            let headerIndex = -1;
+            for (let i = 0; i < lines.length; i++) {
+                if (lines[i].includes(';D;') && lines[i].includes(';E;') && lines[i].includes(';M;')) {
+                    headerIndex = i;
+                    break;
+                }
+            }
+
+            if (headerIndex === -1) {
+                console.error(`Keine Header-Zeile gefunden in ${filename}`);
+                return null;
+            }
+
+            const headerLine = lines[headerIndex];
+            const columns = headerLine.split(';').map(c => c.trim());
+
+            // Finde Fachspalten
+            const fachSpalten = {};
+            const gefundeneFaecher = [];
+            
+            for (let i = 0; i < columns.length; i++) {
+                const col = columns[i];
+                if (FACH_MAPPING[col]) {
+                    fachSpalten[col] = i;
+                    if (!gefundeneFaecher.includes(col)) {
+                        gefundeneFaecher.push(col);
+                    }
+                }
+            }
+
+            // Finde Durchschnitt-Spalte (Ø 1 oder Ø 2)
+            let durchschnittIndex = -1;
+            for (let i = 0; i < columns.length; i++) {
+                if (columns[i].includes('Ø') || columns[i].includes('Durchschnitt')) {
+                    durchschnittIndex = i;
+                    break;
+                }
+            }
+
+            // Finde Niveau-Spalte (M oder G)
+            let niveauIndex = -1;
+            for (let i = 0; i < columns.length; i++) {
+                if (columns[i].toLowerCase() === 'niveau') {
+                    niveauIndex = i;
+                    break;
+                }
+            }
+            
+            // Erkenne Klassen-Niveau aus Klassenname (z.B. "9a_G")
+            let klassenNiveau = null;
+            if (klassenName.includes('_G') || klassenName.toLowerCase().includes('gruppe') && klassenName.includes('G')) {
+                klassenNiveau = 'G';
+            } else if (klassenName.includes('_M')) {
+                klassenNiveau = 'M';
+            }
+
+            // Finde Name-Spalte
+            let nameIndex = 1;
+            for (let i = 0; i < columns.length; i++) {
+                if (columns[i].toLowerCase().includes('name')) {
+                    nameIndex = i;
+                    break;
+                }
+            }
+
+            // Parse Schüler
+            const schueler = [];
+            for (let i = headerIndex + 1; i < lines.length; i++) {
+                const line = lines[i];
+                
+                if (line.toLowerCase().includes('fachdurchschnitt') || 
+                    line.includes('**') || 
+                    line.toLowerCase().includes('stand:')) {
+                    break;
+                }
+
+                const rowCols = line.split(';').map(c => c.trim());
+                const name = rowCols[nameIndex] || '';
+                
+                if (!name || name === '') continue;
+
+                // Hole Durchschnitt aus Datei
+                let durchschnittAusDatei = null;
+                if (durchschnittIndex >= 0 && rowCols[durchschnittIndex]) {
+                    const dStr = rowCols[durchschnittIndex].replace(',', '.');
+                    const d = parseFloat(dStr);
+                    if (!isNaN(d)) {
+                        durchschnittAusDatei = d;
+                    }
+                }
+
+                // Hole Niveau des Schülers (aus Spalte oder Klassenname)
+                let niveau = 'M'; // Standard: M-Niveau
+                if (niveauIndex >= 0 && rowCols[niveauIndex]) {
+                    const niv = rowCols[niveauIndex].trim().toUpperCase();
+                    if (niv === 'G' || niv === 'M') {
+                        niveau = niv;
+                    }
+                } else if (klassenNiveau) {
+                    niveau = klassenNiveau;
+                }
+
+                // Noten extrahieren
+                const noten = {};
+                let hatNoten = false;
+
+                for (const [fach, spalte] of Object.entries(fachSpalten)) {
+                    if (spalte < rowCols.length) {
+                        const note = konvertiereNote(rowCols[spalte]);
+                        if (note !== null) {
+                            noten[fach] = note;
+                            hatNoten = true;
+                        }
+                    }
+                }
+
+                if (hatNoten) {
+                    // Berechne Hauptfachschnitt
+                    const hauptfachSchnitt = berechneHauptfachSchnitt(noten);
+                    
+                    schueler.push({
+                        name,
+                        noten,
+                        niveau,
+                        durchschnittAusDatei,
+                        hauptfachSchnitt,
+                        gefaehrdet: pruefeGefaehrdung(noten, niveau)
+                    });
+                }
+            }
+
+            // Sortiere Fächer nach Reihenfolge
+            gefundeneFaecher.sort((a, b) => {
+                const indexA = FACH_REIHENFOLGE.indexOf(a);
+                const indexB = FACH_REIHENFOLGE.indexOf(b);
+                return (indexA === -1 ? 999 : indexA) - (indexB === -1 ? 999 : indexB);
+            });
+
+            return {
+                klassenName,
+                klassenstufe,
+                zeugnisTyp,
+                faecher: gefundeneFaecher,
+                schueler,
+                filename
+            };
+        }
+
+        // ==================== BERECHNUNGEN ====================
+        function berechneHauptfachSchnitt(noten) {
+            const hauptfachNoten = [];
+            
+            // D, E, M
+            for (const kf of KERNFAECHER) {
+                if (noten[kf] !== undefined) {
+                    hauptfachNoten.push(noten[kf]);
+                }
+            }
+
+            // Wahlpflichtfach (erstes gefundenes)
+            for (const wpf of WAHLPFLICHTFAECHER) {
+                if (noten[wpf] !== undefined) {
+                    hauptfachNoten.push(noten[wpf]);
+                    break;
+                }
+            }
+
+            if (hauptfachNoten.length === 0) return null;
+            
+            const summe = hauptfachNoten.reduce((a, b) => a + b, 0);
+            return (summe / hauptfachNoten.length).toFixed(2);
+        }
+
+        function pruefeGefaehrdung(noten, niveau = 'M') {
+            if (niveau === 'G') {
+                return pruefeGefaehrdungGNiveau(noten);
+            } else {
+                return pruefeGefaehrdungMNiveau(noten);
+            }
+        }
+
+        // ==================== M-NIVEAU GEFÄHRDUNG ====================
+        function pruefeGefaehrdungMNiveau(noten) {
+            // Prüfe auf 5 oder 6 in Kernfächern (D, E, M)
+            for (const kf of KERNFAECHER) {
+                if (noten[kf] >= 5) {
+                    return true;
+                }
+            }
+
+            // Prüfe Wahlpflichtfach (T, F, AES) - auch Hauptfach!
+            for (const wpf of WAHLPFLICHTFAECHER) {
+                if (noten[wpf] !== undefined && noten[wpf] >= 5) {
+                    return true;
+                }
+            }
+
+            // Zähle alle 5en und 6en (OHNE Wahlfach INF - zählt nur positiv!)
+            let schlechteNoten = 0;
+            for (const [fach, note] of Object.entries(noten)) {
+                // Informatik (INF) wird bei schlechten Noten ignoriert
+                if (WAHLFACH_NUR_POSITIV.includes(fach)) {
+                    continue; // 5 oder 6 in INF zählt NICHT negativ
+                }
+                if (note >= 5) schlechteNoten++;
+            }
+
+            // Mehr als 3 schlechte Noten = gefährdet
+            return schlechteNoten >= 3;
+        }
+
+        // ==================== G-NIVEAU GEFÄHRDUNG ====================
+        function pruefeGefaehrdungGNiveau(noten) {
+            // G-Niveau: 1x6 oder 2x5 in maßgebenden Fächern = gefährdet
+            // Und dann muss Ausgleich möglich sein
+            
+            let anzahl6 = 0;
+            let anzahl5 = 0;
+            let anzahl2 = 0;
+            let anzahl1 = 0;
+            
+            for (const [fach, note] of Object.entries(noten)) {
+                // INF zählt nur positiv
+                if (WAHLFACH_NUR_POSITIV.includes(fach) && note >= 5) {
+                    continue;
+                }
+                
+                if (note === 6) anzahl6++;
+                else if (note === 5) anzahl5++;
+                else if (note === 2) anzahl2++;
+                else if (note === 1) anzahl1++;
+            }
+            
+            // Keine 5 oder 6 = nicht gefährdet
+            if (anzahl6 === 0 && anzahl5 === 0) {
+                return false;
+            }
+            
+            // 1x6 oder 2x5 = gefährdet, Ausgleich prüfen
+            // 6 ausgleichen: 1x1 oder 2x2
+            // 5 ausgleichen: 1x2
+            
+            let benoetigtAusgleich = anzahl6 + anzahl5;
+            let verfuegbarerAusgleich = anzahl1 + Math.floor(anzahl2 / 1); // Jede 2 kann eine 5 ausgleichen
+            
+            // Grobe Prüfung: Wenn nicht genug Ausgleich da ist, gefährdet
+            // 6 braucht 1x1 oder 2x2
+            let ausgleichFuer6 = Math.min(anzahl6, anzahl1 + Math.floor(anzahl2 / 2));
+            let restliche6 = anzahl6 - ausgleichFuer6;
+            
+            // Restliche 2en für 5en
+            let genutzteZweien = (ausgleichFuer6 - Math.min(ausgleichFuer6, anzahl1)) * 2;
+            let verbleibende2 = anzahl2 - genutzteZweien;
+            let ausgleichFuer5 = Math.min(anzahl5, verbleibende2);
+            let restliche5 = anzahl5 - ausgleichFuer5;
+            
+            // Wenn noch 6en oder 5en übrig sind, ist der Schüler gefährdet
+            return (restliche6 > 0 || restliche5 > 0);
+        }
+
+        // ==================== FILE HANDLING ====================
+        function handleFileSelect(event) {
+            const files = event.target.files;
+            
+            for (const file of files) {
+                if (geladeneFiles.has(file.name)) continue;
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const content = e.target.result;
+                    const parsed = parseCSV(content, file.name);
+                    
+                    if (parsed && parsed.schueler.length > 0) {
+                        alleKlassen[parsed.klassenName] = parsed;
+                        geladeneFiles.add(file.name);
+                        updateFileList();
+                        renderAlles();
+                    }
+                };
+                reader.readAsText(file, 'UTF-8');
+            }
+        }
+
+        function updateFileList() {
+            const container = document.getElementById('fileList');
+            container.innerHTML = '';
+            
+            for (const filename of geladeneFiles) {
+                const tag = document.createElement('div');
+                tag.className = 'file-tag';
+                tag.innerHTML = `
+                    📄 ${filename}
+                    <span class="remove" onclick="removeFile('${filename}')">×</span>
+                `;
+                container.appendChild(tag);
+            }
+        }
+
+        function removeFile(filename) {
+            geladeneFiles.delete(filename);
+            
+            // Entferne Klasse die zu dieser Datei gehört
+            for (const [klasse, data] of Object.entries(alleKlassen)) {
+                if (data.filename === filename) {
+                    delete alleKlassen[klasse];
+                }
+            }
+            
+            updateFileList();
+            renderAlles();
+        }
+
+        // ==================== RENDERING ====================
+        let filterAktiv = false;
+
+        function toggleFilter() {
+            filterAktiv = !filterAktiv;
+            const btn = document.getElementById('filterBtn');
+            const container = document.getElementById('klassenContainer');
+            
+            if (filterAktiv) {
+                btn.classList.add('active');
+                btn.innerHTML = '✅ Alle Schüler anzeigen';
+                container.classList.add('hide-ok');
+            } else {
+                btn.classList.remove('active');
+                btn.innerHTML = '⚠️ Nur gefährdete Schüler anzeigen';
+                container.classList.remove('hide-ok');
+            }
+        }
+
+        function renderAlles() {
+            const container = document.getElementById('klassenContainer');
+            const noData = document.getElementById('noData');
+            const summary = document.getElementById('summary');
+            const filterSection = document.getElementById('filterSection');
+            
+            const klassenListe = Object.keys(alleKlassen).sort();
+            
+            if (klassenListe.length === 0) {
+                container.innerHTML = '';
+                noData.style.display = 'block';
+                summary.style.display = 'none';
+                filterSection.style.display = 'none';
+                return;
+            }
+
+            noData.style.display = 'none';
+            summary.style.display = 'block';
+            filterSection.style.display = 'flex';
+
+            // Gesamtstatistik
+            let gesamtSchueler = 0;
+            let gesamtGefaehrdet = 0;
+            let gesamtMNiveau = 0;
+            let gesamtGNiveau = 0;
+            
+            for (const klasse of klassenListe) {
+                const data = alleKlassen[klasse];
+                gesamtSchueler += data.schueler.length;
+                gesamtGefaehrdet += data.schueler.filter(s => s.gefaehrdet).length;
+                gesamtMNiveau += data.schueler.filter(s => s.niveau === 'M').length;
+                gesamtGNiveau += data.schueler.filter(s => s.niveau === 'G').length;
+            }
+
+            document.getElementById('statsGrid').innerHTML = `
+                <div class="stat-card">
+                    <div class="stat-number">${klassenListe.length}</div>
+                    <div class="stat-label">Klassen</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">${gesamtSchueler}</div>
+                    <div class="stat-label">Schüler gesamt</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" style="color: #667eea;">${gesamtMNiveau}</div>
+                    <div class="stat-label">M-Niveau</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" style="color: #ff9800;">${gesamtGNiveau}</div>
+                    <div class="stat-label">G-Niveau</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" style="color: #f44336;">${gesamtGefaehrdet}</div>
+                    <div class="stat-label">Gefährdet</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" style="color: #4CAF50;">${gesamtSchueler - gesamtGefaehrdet}</div>
+                    <div class="stat-label">Nicht gefährdet</div>
+                </div>
+            `;
+
+            // Klassen rendern
+            let html = '';
+            for (const klasse of klassenListe) {
+                html += renderKlasse(klasse, alleKlassen[klasse]);
+            }
+            container.innerHTML = html;
+        }
+
+        function renderKlasse(klassenName, data) {
+            const gefaehrdeteCount = data.schueler.filter(s => s.gefaehrdet).length;
+            const zeugnisInfo = data.zeugnisTyp || 'Halbjahresinformation';
+            
+            // Erkenne Niveau der Klasse (einheitlich oder gemischt)
+            const niveaus = [...new Set(data.schueler.map(s => s.niveau))];
+            let klassenNiveau = 'M';
+            let headerClass = '';
+            let niveauBadge = '';
+            
+            if (niveaus.length === 1) {
+                klassenNiveau = niveaus[0];
+                if (klassenNiveau === 'G') {
+                    headerClass = 'g-niveau';
+                    niveauBadge = '<span class="niveau-badge g-niveau">G</span>';
+                } else {
+                    niveauBadge = '<span class="niveau-badge m-niveau">M</span>';
+                }
+            } else {
+                headerClass = 'gemischt';
+                niveauBadge = '<span class="niveau-badge m-niveau">M</span><span class="niveau-badge g-niveau">G</span>';
+            }
+            
+            const hatGemischteNiveaus = niveaus.length > 1;
+            
+            let html = `
+                <div class="klasse-container">
+                    <div class="klasse-header ${headerClass}">
+                        <h2>📚 ${klassenName} ${niveauBadge}</h2>
+                        <div class="klasse-stats">
+                            <span>📄 ${zeugnisInfo}</span>
+                            <span>👥 ${data.schueler.length} Schüler</span>
+                            <span style="background: ${gefaehrdeteCount > 0 ? 'rgba(244,67,54,0.3)' : 'rgba(76,175,80,0.3)'};">
+                                ⚠️ ${gefaehrdeteCount} gefährdet
+                            </span>
+                        </div>
+                    </div>
+                    <div class="noten-tabelle-container">
+                        <table class="noten-tabelle">
+                            <thead>
+                                <tr>
+                                    <th class="name-col">Name</th>
+                                    ${hatGemischteNiveaus ? '<th class="niveau-col">Niv.</th>' : ''}
+            `;
+
+            // Fach-Header
+            for (const fach of data.faecher) {
+                const istHauptfach = KERNFAECHER.includes(fach) || WAHLPFLICHTFAECHER.includes(fach);
+                const istNurPositiv = WAHLFACH_NUR_POSITIV.includes(fach);
+                let cssClass = istHauptfach ? 'hauptfach' : '';
+                let title = FACH_MAPPING[fach] || fach;
+                if (istNurPositiv) {
+                    title += ' (zählt nur positiv)';
+                }
+                html += `<th class="${cssClass}" title="${title}">${fach}</th>`;
+            }
+
+            // Durchschnitt-Header
+            html += `
+                                    <th class="durchschnitt">Ø Alle</th>
+                                    <th class="durchschnitt">Ø HF</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+            `;
+
+            // Schüler-Zeilen
+            for (const schueler of data.schueler) {
+                const rowClass = schueler.gefaehrdet ? 'gefaehrdet' : '';
+                const niveauClass = schueler.niveau === 'G' ? 'g-niveau' : 'm-niveau';
+                
+                html += `<tr class="${rowClass}">`;
+                html += `<td class="name-col">${schueler.name}</td>`;
+                
+                // Niveau-Spalte bei gemischten Klassen
+                if (hatGemischteNiveaus) {
+                    html += `<td><span class="niveau-badge ${niveauClass}">${schueler.niveau}</span></td>`;
+                }
+
+                // Noten
+                for (const fach of data.faecher) {
+                    const note = schueler.noten[fach];
+                    if (note !== undefined) {
+                        let noteClass = `note note-${note}`;
+                        // Informatik: 5/6 nicht rot markieren (zählt nur positiv)
+                        if (WAHLFACH_NUR_POSITIV.includes(fach) && note >= 5) {
+                            noteClass = 'note note-inf-ignoriert';
+                        }
+                        html += `<td><span class="${noteClass}">${note}</span></td>`;
+                    } else {
+                        html += `<td><span class="note leer">-</span></td>`;
+                    }
+                }
+
+                // Durchschnitt aus Datei
+                if (schueler.durchschnittAusDatei !== null) {
+                    const dClass = getDurchschnittClass(schueler.durchschnittAusDatei);
+                    html += `<td><span class="durchschnitt ${dClass}">${schueler.durchschnittAusDatei.toFixed(1)}</span></td>`;
+                } else {
+                    html += `<td>-</td>`;
+                }
+
+                // Hauptfachschnitt
+                if (schueler.hauptfachSchnitt !== null) {
+                    const hfClass = getDurchschnittClass(parseFloat(schueler.hauptfachSchnitt));
+                    html += `<td><span class="durchschnitt ${hfClass}">${schueler.hauptfachSchnitt}</span></td>`;
+                } else {
+                    html += `<td>-</td>`;
+                }
+
+                // Status
+                if (schueler.gefaehrdet) {
+                    html += `<td><span class="status-badge gefaehrdet">⚠️ Gefährdet</span></td>`;
+                } else {
+                    html += `<td><span class="status-badge versetzt">✓ OK</span></td>`;
+                }
+
+                html += `</tr>`;
+            }
+
+            html += `
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            `;
+
+            return html;
+        }
+
+        function getDurchschnittClass(d) {
+            if (d <= 2.5) return 'gut';
+            if (d <= 3.5) return 'ok';
+            return 'kritisch';
+        }
+    </script>
+</body>
+</html>
