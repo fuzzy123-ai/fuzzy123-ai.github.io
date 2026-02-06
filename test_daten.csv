@@ -1,0 +1,21 @@
+Name,Deutsch,Mathematik,Englisch,Geschichte,Physik,Sport,Biologie,Musik,Erwartet,Bemerkung
+Max Mustermann,3,4,3,2,3,4,3,3,VERSETZT,Alle Noten 4 oder besser
+Erika Musterfrau,3,4,3,5,3,4,3,3,VERSETZT,Eine 5 in Nicht-Kernfach (Geschichte)
+Tom Test,5,2,3,3,3,4,3,3,VERSETZT,5 in Kernfach (Deutsch) mit Ausgleich durch 2 in Kernfach (Mathe)
+Anna Beispiel,3,6,3,3,3,4,3,3,NICHT VERSETZT,Note 6 in Kernfach (Mathematik) - nicht ausgleichbar
+Stefan Stark,5,5,5,2,2,2,2,2,NICHT VERSETZT,Durchschnitt Kernfächer > 4.0 (alle drei Kernfächer mit 5)
+Peter Probe,5,3,3,3,3,4,3,3,NICHT VERSETZT,5 in Kernfach (Deutsch) ohne Ausgleich (keine 2 in Kernfach)
+Julia Jung,2,3,3,5,5,4,3,3,VERSETZT,Zwei 5en in Nicht-Kernfächern mit Ausgleich durch 2 in Kernfach
+Markus Müller,3,3,3,6,3,2,3,3,VERSETZT,6 in Nicht-Kernfach (Geschichte) mit Ausgleich durch 2 (Sport)
+Sarah Schmidt,3,3,3,5,5,5,3,3,VERSETZT,Drei 5en in Nicht-Kernfächern mit Ausgleich (2x Note 3)
+Kevin Klein,4,4,4,5,5,5,5,5,NICHT VERSETZT,Mehr als 3 Noten unter 4 (5x Note 5)
+Laura Lange,3,3,3,5,3,4,3,3,VERSETZT,Eine 5 in Nicht-Kernfach (Geschichte)
+Tim Tall,6,3,3,3,3,4,3,3,NICHT VERSETZT,Note 6 in Kernfach (Deutsch) - nicht ausgleichbar
+Nina Neu,3,5,3,3,2,4,3,3,VERSETZT,5 in Kernfach (Mathe) mit Ausgleich durch 2 in Kernfach (Englisch müsste 2 sein)
+Oliver Otto,3,3,3,6,5,3,3,3,VERSETZT,6 in Nicht-Kernfach mit 5 in anderem Nicht-Kernfach - maximal 3 unter 4
+Sophie Stark,5,5,5,5,5,5,5,5,NICHT VERSETZT,Durchschnitt aller Fächer > 4.0 (alle Fächer mit 5)
+Lisa Lang,4,4,4,3,3,3,3,3,VERSETZT,Alle Noten 4 oder besser
+Martin Meyer,3,3,2,5,5,4,3,3,VERSETZT,Zwei 5en in Nicht-Kernfächern mit Ausgleich durch 2 in Kernfach
+Felix Fischer,5,3,3,5,3,4,3,3,NICHT VERSETZT,5 in Kernfach ohne Ausgleich + 5 in Nicht-Kernfach
+Hannah Huber,2,2,2,5,5,5,3,3,VERSETZT,Drei 5en in Nicht-Kernfächern mit starkem Ausgleich (3x Note 2 in KF)
+Paula Peters,3,3,3,6,6,4,3,3,NICHT VERSETZT,Zwei 6en in Nicht-Kernfächern
